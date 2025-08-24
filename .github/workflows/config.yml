@@ -21,6 +21,11 @@ jobs:
           ref: gh-pages
           path: ./.github/gh-pages
 
+      - name: Verify Docker and Compose availability
+        run: |
+          docker --version
+          docker compose version
+
       - name: Run UI-tests via docker compose
         env:
           LOGIN: ${{ secrets.LOGIN }}
