@@ -4,13 +4,13 @@
     "name" : "tests.feature_profile_test",
     "children" : [ {
       "name" : "Change profile name",
-      "uid" : "a3c879780c2eec5f",
+      "uid" : "ddd647f2f7fbaca7",
       "parentUid" : "06879556d81935b42ec1b990728e6479",
       "status" : "passed",
       "time" : {
-        "start" : 1756053093873,
-        "stop" : 1756053102048,
-        "duration" : 8175
+        "start" : 1756061469623,
+        "stop" : 1756061477690,
+        "duration" : 8067
       },
       "flaky" : false,
       "newFailed" : false,
