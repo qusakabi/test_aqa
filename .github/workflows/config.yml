@@ -31,7 +31,15 @@ jobs:
           LOGIN: ${{ secrets.LOGIN }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
+          export UID="$(id -u)"
+          export GID="$(id -g)"
+          mkdir -p allure-results
           docker compose up --exit-code-from regression || true
+
+      - name: Fix permissions for allure results
+        run: |
+          sudo chown -R "$USER":"$USER" allure-results || true
+          chmod -R u+rwX,go+rX allure-results || true
 
       - name: Copy history from gh-pages to allure-results
         run: |
