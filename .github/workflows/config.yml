@@ -30,8 +30,13 @@ jobs:
 
       - name: Copy history from gh-pages to allure-results
         run: |
-          sudo mkdir -p allure-results/history  
-          sudo cp -R ./.github/gh-pages/history/* allure-results/history/
+          mkdir -p allure-results/history
+          if [ -d ".github/gh-pages/history" ] && compgen -G ".github/gh-pages/history/*" > /dev/null; then
+            cp -R ./.github/gh-pages/history/* allure-results/history/ || true
+            echo "History copied from gh-pages."
+          else
+            echo "No history found in gh-pages; skipping copy."
+          fi
 
       - name: Generate Allure report
         run: |
@@ -39,7 +44,13 @@ jobs:
 
       - name: Update Allure history
         run: |
-          sudo cp -R allure-report/history/* ./.github/gh-pages/history/
+          mkdir -p ./.github/gh-pages/history
+          if [ -d "allure-report/history" ] && compgen -G "allure-report/history/*" > /dev/null; then
+            cp -R allure-report/history/* ./.github/gh-pages/history/ || true
+            echo "Updated gh-pages history."
+          else
+            echo "No generated history to update; skipping."
+          fi
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.5
