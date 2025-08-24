@@ -31,8 +31,8 @@ jobs:
           LOGIN: ${{ secrets.LOGIN }}
           PASSWORD: ${{ secrets.PASSWORD }}
         run: |
-          export UID="$(id -u)"
-          export GID="$(id -g)"
+          export HOST_UID="$(id -u)"
+          export HOST_GID="$(id -g)"
           mkdir -p allure-results
           docker compose up --exit-code-from regression || true
 

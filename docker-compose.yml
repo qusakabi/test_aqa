@@ -5,7 +5,7 @@ services:
     build:
       context: .   # если docker-compose.yml лежит рядом с Dockerfile
       dockerfile: Dockerfile
-    user: "${UID}:${GID}"
+    user: "${HOST_UID}:${HOST_GID}"
     volumes:
       - ./:/usr/workspace
     working_dir: /usr/workspace
